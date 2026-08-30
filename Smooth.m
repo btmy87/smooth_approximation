@@ -4,9 +4,10 @@ classdef Smooth
     % Implementing this as a class makes it easy to swap out the
     % sigmoid function and change the default tolerance.
 
-    properties
+    properties(GetAccess=public, SetAccess=private)
         f (1, 1) function_handle = @(x, a) nan(size(x));
         tol (1, 1) double = nan
+        type (1, 1) string = ""
     end
 
     methods
@@ -19,6 +20,7 @@ classdef Smooth
                 opts.fun (1, 1) function_handle = @(x, a) nan(size(x));
             end
             obj.tol = opts.tol;
+            obj.type = type;
 
             % pick a sigmoid function
             type1 = lower(type);
